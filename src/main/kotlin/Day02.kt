@@ -6,11 +6,12 @@ fun main() {
     }
 
     fun part2(input: List<String>): Int {
-        return input.size
+        val games = input.map { parseGame(it) }
+        return solutionPart2(games)
     }
 
-    val input = readFileLines("day02-1.txt")
-    part1(input).println()
+    val input = readFileLines("day02-2.txt")
+    part2(input).println()
 }
 
 data class GameSet(val blueBalls: Int, val redBalls: Int, val greenBalls: Int)
@@ -32,7 +33,6 @@ fun solutionPart1(
     }.map { it.id }.sum()
 }
 
-// Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green
 fun parseGame(line: String): Game {
     val parts = line.split(":")
     val id = parseGameId(parts[0])
@@ -60,5 +60,14 @@ fun parseGameSets(part: String): List<GameSet> {
             }
         }
         GameSet(blueBalls, redBalls, greenBalls)
+    }
+}
+
+fun solutionPart2(games: List<Game>): Int {
+    return games.sumOf { game ->
+        val bluesRequired = game.sets.map { it.blueBalls }.max() ?: 0
+        val redsRequired = game.sets.map { it.redBalls }.max() ?: 0
+        val greensRequired = game.sets.map { it.greenBalls }.max() ?: 0
+        bluesRequired * redsRequired * greensRequired
     }
 }
