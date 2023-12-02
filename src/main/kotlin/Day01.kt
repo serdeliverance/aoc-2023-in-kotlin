@@ -9,13 +9,16 @@ fun main() {
         return input.map { calculate(it) }.sum()
     }
 
-    val input = listOf("two1nine",
-    "eightwothree",
-    "abcone2threexyz",
-    "xtwone3four",
-    "4nineeightseven2",
+    val input =
+        listOf(
+            "two1nine",
+            "eightwothree",
+            "abcone2threexyz",
+            "xtwone3four",
+            "4nineeightseven2",
             "zoneight234",
-    "7pqrstsixteen")
+            "7pqrstsixteen",
+        )
 
     part2(input).println()
 
@@ -72,21 +75,39 @@ fun calculate(line: String): Int {
     return StringBuilder().append(firstDigit).append(lastDigit).toString().toInt()
 }
 
-fun possibleLastDigit(line: String, index: Int): Char {
+fun possibleLastDigit(
+    line: String,
+    index: Int,
+): Char {
     TODO()
 }
 
-val possibleNumberFirstLetter = listOf(
-    'o', 't', 't', 'f', 's', 'e', 'n'
-)
+val possibleNumberFirstLetter =
+    listOf(
+        'o',
+        't',
+        't',
+        'f',
+        's',
+        'e',
+        'n',
+    )
 
-val possibleLastNumberLastLetter = listOf(
-    'e', 'o', 'e', 'r', 'x', 't', 'n'
-)
+val possibleLastNumberLastLetter =
+    listOf(
+        'e',
+        'o',
+        'e',
+        'r',
+        'x',
+        't',
+        'n',
+    )
 
-val numbersAsLetters = mapOf(
-    "one" to 1, "two" to 2, "three" to 3, "four" to 4, "five" to 5, "six" to 6, "seven" to 7, "eight" to 8, "nine" to 9
-)
+val numbersAsLetters =
+    mapOf(
+        "one" to 1, "two" to 2, "three" to 3, "four" to 4, "five" to 5, "six" to 6, "seven" to 7, "eight" to 8, "nine" to 9,
+    )
 
 fun isPossibleDigit(c: Char): Boolean {
     return possibleNumberFirstLetter.contains(c)
@@ -96,13 +117,19 @@ fun isPossibleLastDigit(c: Char): Boolean {
     return possibleLastNumberLastLetter.contains(c)
 }
 
-fun possibleDigit(line: String, index: Int): Char? {
+fun possibleDigit(
+    line: String,
+    index: Int,
+): Char? {
     val limit = if (index + 5 > line.length) line.length else index + 5
     val slice = line.substring(index, limit)
     return getDigit(slice, slice.length)
 }
 
-fun getDigit(slice: String, length: Int): Char? {
+fun getDigit(
+    slice: String,
+    length: Int,
+): Char? {
     if (length < 3) {
         return null
     }
