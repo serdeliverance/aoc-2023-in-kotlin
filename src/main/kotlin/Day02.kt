@@ -65,9 +65,9 @@ fun parseGameSets(part: String): List<GameSet> {
 
 fun solutionPart2(games: List<Game>): Int {
     return games.sumOf { game ->
-        val bluesRequired = game.sets.map { it.blueBalls }.max() ?: 0
-        val redsRequired = game.sets.map { it.redBalls }.max() ?: 0
-        val greensRequired = game.sets.map { it.greenBalls }.max() ?: 0
+        val bluesRequired = game.sets.maxOfOrNull { it.blueBalls } ?: 0
+        val redsRequired = game.sets.maxOfOrNull { it.redBalls } ?: 0
+        val greensRequired = game.sets.maxOfOrNull { it.greenBalls } ?: 0
         bluesRequired * redsRequired * greensRequired
     }
 }
