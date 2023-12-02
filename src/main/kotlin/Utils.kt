@@ -1,3 +1,4 @@
+import java.io.File
 import java.math.BigInteger
 import java.security.MessageDigest
 import kotlin.io.path.Path
@@ -19,3 +20,10 @@ fun String.md5() = BigInteger(1, MessageDigest.getInstance("MD5").digest(toByteA
  * The cleaner shorthand for printing output.
  */
 fun Any?.println() = println(this)
+
+fun readFileLines(resourceName: String): List<String> {
+    val classLoader = object {}.javaClass.classLoader
+    val file = File(classLoader.getResource(resourceName)?.file ?: "")
+
+    return file.readLines()
+}
